@@ -36,3 +36,86 @@ h1 {
   justify-content: space-between;
   align-self: stretch;
 }
+
+.add-button-container {
+  display: flex;
+  justify-content: end;
+  padding-right: 50px;
+}
+
+.show-form {
+  border: none;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+dialog {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 10px, rgba(0, 0, 0, 0.15) 0px -3px 10px;
+  border-radius: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.status,
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 300px;
+  padding: 5px 10px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.add,
+.close {
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.add {
+  background-color: green;
+}
+
+.close {
+  background-color: black;
+}

@@ -8,6 +8,40 @@
 </head>
 <body>
   <h1>Book Library</h1>
+  <div class="add-button-container">
+    <button class="show-form">Add book</button>
+  </div>
+  <dialog>
+    <h2>Add a book</h2>
+    <form>
+      <div class="input-container">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+      </div>
+      <div class="input-container">
+        <label for="author">Author</label>
+        <input type="text" name="author" id="author">
+      </div>
+      <div class="input-container">
+        <label for="page">Number of pages</label>
+        <input type="number" name="page" id="page" min="1">
+      </div>
+      <div class="status">
+        <div class="status-container">
+          <label for="read">Read</label>
+          <input type="radio" name="status" value="read" checked id="read">
+        </div>
+        <div class="status-container">
+          <label for="unread">Unread</label>
+          <input type="radio" name="status" value="unread" id="unread">
+        </div>  
+      </div>
+      <div class="button-container">
+        <button type="submit" class="add">Add</button>
+        <button formmethod="dialog" class="close">Close</button>
+      </div>
+    </form>
+  </dialog>
   <div class="book-container"></div>
   <script src="script.js"></script>
 </body>

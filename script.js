@@ -41,3 +41,11 @@ function displayBook() {
 }
 
 displayBook();
+
+const dialog = document.querySelector("dialog");
+const showForm = document.querySelector(".show-form");
+
+showForm.addEventListener("click", () => {
+  dialog.showModal();
+});
+

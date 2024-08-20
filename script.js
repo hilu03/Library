@@ -1,19 +1,19 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.status = status;
 }
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-const book1 = new Book("Name of the Book", "Name of author", 200, "read");
-const book2 = new Book("Name of the Book", "Name of author", 200, "unread");
-const book3 = new Book("Name of the Book", "Name of author", 200, "read");
+const book1 = new Book("Kane and Abel", "Jeffrey Archer", 695, "read");
+const book2 = new Book("Anne of Green Gables", "Lucy Maud Montgomery", 320, "read");
+const book3 = new Book("Harry Potter and the Sorcerer's Stone", "J. K. Rowling", 309, "unread");
 
 addBookToLibrary(book1);
 addBookToLibrary(book2);
@@ -24,15 +24,15 @@ function displayBook() {
   let html = "";
   myLibrary.forEach((book, index) => {
     html +=
-      ` <div class="card">
+      ` <div class="card ${book.status === 'read'? 'green-card': 'orange-card'}" data-id="${index}">
           <div class="icon-container">
             <img src="book_icon.png" class="icon">
           </div>
           <div class="title">${book.title}</div>
-          <div class="author">Author: ${book.author}</div>
+          <div class="author">Author: <em>${book.author}</em></div>
           <div class="last-row">
             <div class="pages">${book.pages} pages</div>
-            <div class="read">${book.read}</div>  
+            <button class="${book.status}" data-id="${index}">${book.status}</button>  
           </div>
           <button class="remove" data-id="${index}">Remove</button>
         </div>
@@ -46,6 +46,31 @@ function displayBook() {
       const index = Number(button.dataset.id);
       myLibrary.splice(index, 1);
       displayBook();
+    });
+  });
+
+  const statusButtons = document.querySelectorAll(".last-row button");
+  statusButtons.forEach((button, id) => {
+    button.addEventListener("click", () => {
+      const status = button.textContent;
+      const index = Number(button.dataset.id);
+      const card = document.querySelector(`.card[data-id="${id}"]`);
+      if (status === "Read") {
+        button.classList.remove("read");
+        button.classList.add("unread");
+        card.classList.remove("green-card");
+        card.classList.add("orange-card");
+        button.textContent = "Unread";
+        myLibrary[index].status = "unread";
+      }
+      else {
+        button.classList.remove("unread");
+        button.classList.add("read");
+        card.classList.remove("orange-card");
+        card.classList.add("green-card");
+        button.textContent = "Read";
+        myLibrary[index].status = "read";
+      }
     });
   });
 }

@@ -22,7 +22,7 @@ addBookToLibrary(book3);
 function displayBook() {
   const container = document.querySelector(".book-container");
   let html = "";
-  myLibrary.forEach(book => {
+  myLibrary.forEach((book, index) => {
     html +=
       ` <div class="card">
           <div class="icon-container">
@@ -34,10 +34,20 @@ function displayBook() {
             <div class="pages">${book.pages} pages</div>
             <div class="read">${book.read}</div>  
           </div>
+          <button class="remove" data-id="${index}">Remove</button>
         </div>
       `;
   });
   container.innerHTML = html;
+
+  const removeButtons = document.querySelectorAll(".remove");
+  removeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.id);
+      myLibrary.splice(index, 1);
+      displayBook();
+    });
+  });
 }
 
 displayBook();

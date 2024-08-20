@@ -10,7 +10,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 30px;
-  padding-left: 20px;
+  padding: 20px;
 }
 
 .card {
@@ -144,3 +144,15 @@ input[type="number"]:valid {
 .close {
   background-color: black;
 }
+
+.remove {
+  font-weight: bold;
+  color: white;
+  background-color: orangered;
+  border: none;
+  cursor: pointer;
+  align-self: stretch;
+  padding: 10px;
+  font-size: 15px;
+}
+

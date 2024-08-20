@@ -7,8 +7,8 @@ h1 {
 }
 
 .book-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 30px;
   padding-left: 20px;
 }
@@ -23,6 +23,10 @@ h1 {
               rgba(0, 0, 0, 0.15) 0px -3px 5px;
   border-left: 5px solid orange;
   border-radius: 10px;
+}
+
+.read {
+  text-transform: capitalize;
 }
 
 .title {
@@ -45,11 +49,12 @@ h1 {
 
 .show-form {
   border: none;
-  background-color: green;
+  background-color: black;
   color: white;
   cursor: pointer;
   padding: 10px 15px;
   border-radius: 20px;
+  font-weight: bold;
 }
 
 button:hover {
@@ -100,6 +105,26 @@ input[type="number"] {
 
 label {
   font-size: 20px;
+}
+
+label span {
+  color: red;
+}
+
+input[type="text"]:invalid,
+input[type="number"]:invalid {
+  border-color: red;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: blue;
+  outline: none;
+}
+
+input[type="text"]:valid,
+input[type="number"]:valid {
+  border: 2px solid green;
 }
 
 .add,

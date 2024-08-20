@@ -11,9 +11,9 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-const book1 = new Book("Name of the Book", "Name of author", 200, false);
-const book2 = new Book("Name of the Book", "Name of author", 200, false);
-const book3 = new Book("Name of the Book", "Name of author", 200, false);
+const book1 = new Book("Name of the Book", "Name of author", 200, "read");
+const book2 = new Book("Name of the Book", "Name of author", 200, "unread");
+const book3 = new Book("Name of the Book", "Name of author", 200, "read");
 
 addBookToLibrary(book1);
 addBookToLibrary(book2);
@@ -32,7 +32,7 @@ function displayBook() {
           <div class="author">Author: ${book.author}</div>
           <div class="last-row">
             <div class="pages">${book.pages} pages</div>
-            <div class="read">${book.read? "Read": "Unread"}</div>  
+            <div class="read">${book.read}</div>  
           </div>
         </div>
       `;
@@ -44,8 +44,21 @@ displayBook();
 
 const dialog = document.querySelector("dialog");
 const showForm = document.querySelector(".show-form");
+const addButton = document.querySelector(".add");
 
 showForm.addEventListener("click", () => {
   dialog.showModal();
+});
+
+addButton.addEventListener("click", (e) => {
+  const title = document.querySelector("#title").value;
+  const author = document.querySelector("#author").value;
+  const page = document.querySelector("#page").value;
+  const status = document.querySelector("input[name=status]:checked").value;
+  const book = new Book(title, author, page, status);
+  addBookToLibrary(book);
+  e.preventDefault();
+  dialog.close();
+  displayBook();
 });
 

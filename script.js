@@ -87,20 +87,86 @@ library.displayBook();
 const dialog = document.querySelector("dialog");
 const showForm = document.querySelector(".show-form");
 const addButton = document.querySelector(".add");
-
+const closeButton = document.querySelector(".close");
+const form = document.querySelector("form");
 showForm.addEventListener("click", () => {
   dialog.showModal();
 });
 
-addButton.addEventListener("click", (e) => {
-  const title = document.querySelector("#title").value;
-  const author = document.querySelector("#author").value;
-  const page = document.querySelector("#page").value;
-  const status = document.querySelector("input[name=status]:checked").value;
-  const book = new Book(title, author, page, status);
-  library.addBook(book);
+closeButton.addEventListener("click", (e) => {
   e.preventDefault();
   dialog.close();
-  library.displayBook();
 });
 
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pageInput = document.querySelector("#page");
+const statusInput = document.querySelector("input[name=status]:checked");
+
+titleInput.addEventListener("input", () => {
+  showTitleError();
+});
+
+authorInput.addEventListener("input", () => {
+  showAuthorError();
+});
+
+pageInput.addEventListener("input", () => {
+  showPageError();
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (!titleInput.validity.valid) {
+    showTitleError();
+  }
+  else if (!authorInput.validity.valid) {
+    showAuthorError();
+  }
+  else {
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const page = pageInput.value;
+    const status = statusInput.value;
+    const book = new Book(title, author, page, status);
+    library.addBook(book);  
+    dialog.close();
+    library.displayBook();  
+  }
+});
+
+function showTitleError() {
+  if (titleInput.validity.valueMissing) {
+    titleInput.setCustomValidity("The book title is required!");
+  }
+  else if (titleInput.validity.tooShort) {
+    titleInput.setCustomValidity("Please enter a real book title!");
+  }
+  else {
+    titleInput.setCustomValidity("");
+  }
+}
+
+function showAuthorError() {
+  if (authorInput.validity.valueMissing) {
+    authorInput.setCustomValidity("The book author is required!");
+  }
+  else if (authorInput.validity.tooShort) {
+    authorInput.setCustomValidity("Please enter a real name!");
+  }
+  else {
+    authorInput.setCustomValidity("");
+  }
+}
+
+function showPageError() {
+  if (pageInput.validity.valueMissing) {
+    pageInput.setCustomValidity("Please enter number of pages!");
+  }
+  else if (pageInput.validity.rangeUnderflow) {
+    pageInput.setCustomValidity("Number of pages must be greater than 10!");
+  }
+  else {
+    pageInput.setCustomValidity("");
+  }
+}
